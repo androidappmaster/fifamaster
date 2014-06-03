@@ -6,7 +6,7 @@
     android:background="@drawable/card">
 
     <ImageView
-        android:id="@+id/student_photo"
+        android:id="@+id/player_photo"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -20,26 +20,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/student_photo"
+        android:layout_below="@id/player_photo"
         android:layout_margin="5dp"
         style="?android:textAppearanceMedium"/>
 
     <TextView
-        android:id="@+id/student_name"
+        android:id="@+id/player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/student_photo"
+        android:layout_toRightOf="@id/player_photo"
         android:layout_alignParentTop="true"
         android:layout_margin="15dp"
         android:singleLine="true"
         style="?android:textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/student_city"
+        android:id="@+id/player_surname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/student_photo"
-        android:layout_below="@id/student_name"
+        android:layout_toRightOf="@id/player_photo"
+        android:layout_below="@id/player_name"
         android:layout_margin="15dp"
         style="?android:textAppearanceMedium"/>
 
@@ -47,8 +47,8 @@
         android:id="@+id/nation_falg"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/student_name"
-        android:layout_toRightOf="@id/student_city"
+        android:layout_below="@id/player_name"
+        android:layout_toRightOf="@id/player_surname"
         android:layout_margin="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher"/>

@@ -51,9 +51,9 @@ public class PlayerAdapter extends BaseAdapter {
             // create view
             convertView = inflater.inflate(R.layout.item_player, null);
             holder = new ViewHolder();
-            holder.studentPhoto = (ImageView) convertView.findViewById(R.id.student_photo);
-            holder.studentName = (TextView) convertView.findViewById(R.id.student_name);
-            holder.studentCity = (TextView) convertView.findViewById(R.id.student_city);
+            holder.studentPhoto = (ImageView) convertView.findViewById(R.id.player_photo);
+            holder.studentName = (TextView) convertView.findViewById(R.id.player_name);
+            holder.studentCity = (TextView) convertView.findViewById(R.id.player_surname);
             holder.flag = (ImageView) convertView.findViewById(R.id.nation_falg);
             holder.pace = (TextView) convertView.findViewById(R.id.pace_value);
 

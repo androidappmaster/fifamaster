@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -90,6 +91,7 @@ public class DetailFragment extends Fragment {
         TextView subtitle = (TextView) getView().findViewById(R.id.item_subtitle);
 
         title.setText(player.getFirstName());
+        Picasso.with(getActivity()).load(player.getPlayerPhoto()).into(photo);
 
         //currentPosition = position;
     }

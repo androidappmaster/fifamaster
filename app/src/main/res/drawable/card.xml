@@ -7,22 +7,22 @@
         </shape>
     </item>
     <item
-        android:bottom="10dp"
-        android:left="10dp"
-        android:right="10dp"
-        android:top="10dp">
+        android:bottom="5dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp">
         <shape android:shape="rectangle">
-            <corners android:radius="3dp" />
+            <corners android:radius="2dp" />
             <solid android:color="@color/card_shadow" />
         </shape>
     </item>
     <item
-        android:bottom="12dp"
-        android:left="10dp"
-        android:right="10dp"
-        android:top="10dp">
+        android:bottom="7dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp">
         <shape android:shape="rectangle">
-            <corners android:radius="3dp" />
+            <corners android:radius="2dp" />
             <solid android:color="@color/card_white" />
         </shape>
     </item>
