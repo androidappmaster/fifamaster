@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:orientation="vertical"
-    android:background="#DDDDDD">
+    android:background="@android:color/holo_blue_bright">
 
     <ImageView
         android:id="@+id/item_photo"
@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:singleLine="true"
+        android:text="asfasdfasdfasdfa"
         style="?android:textAppearanceLarge" />
 
     <TextView

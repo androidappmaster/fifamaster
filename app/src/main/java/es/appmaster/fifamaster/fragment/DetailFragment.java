@@ -1,6 +1,5 @@
 package es.appmaster.fifamaster.fragment;
 
-import android.app.ActionBar;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -36,6 +35,16 @@ public class DetailFragment extends Fragment {
     int currentPosition = -1;
 
     private Gson gson;
+
+    public static DetailFragment newInstance() {
+
+        DetailFragment fragment = new DetailFragment();
+        return fragment;
+    }
+
+    public DetailFragment() {
+        // empty constructor
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,6 +101,7 @@ public class DetailFragment extends Fragment {
         TextView subtitle = (TextView) getView().findViewById(R.id.item_subtitle);
 
         title.setText(player.getFirstName());
+        subtitle.setText(player.getLastName());
         Picasso.with(getActivity()).load(player.getPlayerPhoto()).into(photo);
 
         //currentPosition = position;

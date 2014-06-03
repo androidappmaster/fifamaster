@@ -1,8 +1,8 @@
 package es.appmaster.fifamaster;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
@@ -11,7 +11,12 @@ import es.appmaster.fifamaster.fragment.DetailFragment;
 import es.appmaster.fifamaster.fragment.FifaListFragment;
 
 
-public class MainActivity extends ActionBarActivity implements FifaListFragment.OnPlayerSelectedListener, android.support.v7.app.ActionBar.OnNavigationListener {
+public class MainActivity extends ActionBarActivity implements
+        FifaListFragment.OnPlayerSelectedListener,
+        ActionBar.OnNavigationListener {
+
+    FifaListFragment fifaListFragment;
+    DetailFragment detailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +28,6 @@ public class MainActivity extends ActionBarActivity implements FifaListFragment.
                 R.array.action_list, android.R.layout.simple_spinner_dropdown_item);
 
         getSupportActionBar().setListNavigationCallbacks(mSpinnerAdapter, this);
-
-        if (findViewById(R.id.container) != null && savedInstanceState == null) {
-
-            FifaListFragment fifaListFragment = FifaListFragment.newInstance(0);
-            fifaListFragment.setOnPlayerSelectedListener(this);
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, fifaListFragment)
-                    .commit();
-        }
-
     }
 
     @Override
@@ -50,11 +44,10 @@ public class MainActivity extends ActionBarActivity implements FifaListFragment.
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
     }
 
-
     @Override
     public void OnPlayerSelected(String resourceId) {
 
-        DetailFragment detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
+        detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
 
         Bundle args = new Bundle();
         args.putString("POSITION", resourceId);
@@ -65,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements FifaListFragment.
 
         } else {
 
-            detailFragment = new DetailFragment();
+            detailFragment = DetailFragment.newInstance();
             detailFragment.setArguments(args);
 
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -75,18 +68,19 @@ public class MainActivity extends ActionBarActivity implements FifaListFragment.
             fragmentTransaction.commit();
         }
 
-        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-
+        getSupportActionBar().setNavigationMode(ActionBar.DISPLAY_SHOW_TITLE);
     }
 
     @Override
-    public boolean onNavigationItemSelected(int i, long l) {
-        FifaListFragment fifaListFragment = FifaListFragment.newInstance(i);
+    public boolean onNavigationItemSelected(int index, long l) {
+        fifaListFragment = FifaListFragment.newInstance(index);
         fifaListFragment.setOnPlayerSelectedListener(this);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fifaListFragment)
                 .commit();
+
         return false;
     }
+
 }
