@@ -1,17 +1,8 @@
 package es.appmaster.fifamaster;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.Toast;
 
 import es.appmaster.fifamaster.fragment.DetailFragment;
 import es.appmaster.fifamaster.fragment.FifaListFragment;
@@ -24,20 +15,19 @@ public class MainActivity extends ActionBarActivity implements FifaListFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FifaListFragment fragment = (FifaListFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_list);
+        FifaListFragment fragment = (FifaListFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_list);
         fragment.setOnPlayerSelectedListener(this);
     }
 
     @Override
     public void OnPlayerSelected(String resourceId) {
-        Toast.makeText(this, "SELECTED PLAYER " + resourceId, Toast.LENGTH_LONG).show();
 
         DetailFragment detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
 
         Bundle args = new Bundle();
         args.putString("POSITION", resourceId);
 
-        if ( detailFragment != null && detailFragment.isInLayout() ) {
+        if (detailFragment != null && detailFragment.isInLayout()) {
 
             detailFragment.updateDetailView(resourceId);
 
