@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import es.appmaster.fifamaster.R;
 import es.appmaster.fifamaster.adapter.PlayerAdapter;
 import es.appmaster.fifamaster.api.RestClient;
 import es.appmaster.fifamaster.model.Player;
@@ -28,6 +29,8 @@ import es.appmaster.fifamaster.model.Player;
  * @author manolovn
  */
 public class FifaListFragment extends ListFragment {
+
+    private static final String TERM_INDEX = "term_index";
 
     OnPlayerSelectedListener listener;
     public interface OnPlayerSelectedListener {
@@ -43,9 +46,26 @@ public class FifaListFragment extends ListFragment {
     private RestClient restClient;
     private Gson gson;
 
+    private int termIndex;
+
+    public static FifaListFragment newInstance(int term) {
+
+        FifaListFragment fragment = new FifaListFragment();
+        Bundle args = new Bundle();
+        args.putInt(TERM_INDEX, term);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public FifaListFragment() {
+        // empty constructor
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.termIndex = getArguments().getInt(TERM_INDEX);
 
         adapter = new PlayerAdapter(getActivity(), players);
         setListAdapter(adapter);
@@ -66,7 +86,8 @@ public class FifaListFragment extends ListFragment {
     }
 
     private void getPlayersFromWebservice() {
-        new FifaTask().execute("");
+        String terms[] = getResources().getStringArray(R.array.action_list);
+        new FifaTask().execute(terms[this.termIndex].toLowerCase());
     }
 
     class FifaTask extends AsyncTask<String, Integer, ArrayList<Player>> {
@@ -77,7 +98,7 @@ public class FifaListFragment extends ListFragment {
             String result = "";
             try {
 
-                result = restClient.get("/api/topten/pace");
+                result = restClient.get("/api/topten/" + params[0]);
                 Log.d("REST", "--> " + result);
 
                 JSONArray jsonArray = new JSONArray(result);
